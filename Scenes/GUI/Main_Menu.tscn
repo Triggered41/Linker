@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/GUI/Main_Menu.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/GUI/Assets/font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scenes/GUI/Assets/main_menuBG.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/GUI/Assets/hover_button.tres" type="StyleBox" id=4]
+[ext_resource path="res://Scenes/GUI/Assets/pressed_button.tres" type="StyleBox" id=5]
+[ext_resource path="res://Scenes/GUI/Assets/Normal_button.tres" type="StyleBox" id=6]
 
 [node name="main_menu" type="Control"]
 anchor_right = 1.0
@@ -11,10 +15,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.372549, 0.34902, 0.34902, 1 )
+texture = ExtResource( 3 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -35,15 +40,23 @@ __meta__ = {
 
 [node name="play" type="Button" parent="VBoxContainer"]
 margin_right = 273.0
-margin_bottom = 152.0
+margin_bottom = 158.0
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 6 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Play"
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
-margin_top = 182.0
+margin_top = 188.0
 margin_right = 273.0
-margin_bottom = 334.0
+margin_bottom = 346.0
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 6 )
 custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Exit"
 
 [connection signal="button_up" from="VBoxContainer/play" to="." method="_on_play_button_up"]
