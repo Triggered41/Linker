@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Level_Bounds.gd" type="Script" id=1]
+
+[node name="Level_Bounds" type="Node"]
+script = ExtResource( 1 )
+
+[node name="left" type="Node2D" parent="."]
+
+[node name="right" type="Node2D" parent="."]
+
+[node name="top" type="Node2D" parent="."]
+
+[node name="bottom" type="Node2D" parent="."]
