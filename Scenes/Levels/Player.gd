@@ -49,12 +49,9 @@ func kill():
 		queue_free()
 		CloneData.can_clone = true
 	else:
-		var canvas = CanvasLayer.new()
-		var lose = lose_menu.instance()
-		get_tree().root.add_child(lose)
-		
-		
-		
-		
-	
-	
+		print("DEAD!")
+#		var canvas = CanvasLayer.new()
+#		var lose = lose_menu.instance()
+#		get_tree().root.add_child(canvas)
+#		canvas.add_child(lose)
+
