@@ -9,14 +9,15 @@ func _physics_process(delta):
 		clone()
 		
 func clone():
-	if CloneData.can_clone:
+	if CloneData.can_clone and CloneData.clone_power > 0:
 		player.set_physics_process(false)
 		var clone = player.duplicate()
 		clone.name = "clone"
 		get_tree().root.add_child(clone)
+		CloneData.clone_power -= 1
 		clone.global_position = player.global_position
 		CloneData.can_clone = false
-		CloneData.clone = clone
+
 	else:
 		if player.name == "clone":
 			var real_player = get_tree().root.find_node("Player", true, false)
