@@ -20,7 +20,16 @@ var velocity = Vector2.ZERO
 func _physics_process(delta):
 
 	if is_dead():
-		get_tree().change_scene_to(lose_menu)
+		if name == "clone":
+			var real_player = get_tree().root.find_node("Player", true, false)
+			get_node("Camera2D").global_position = lerp(get_node("Camera2D").global_position, 
+															   real_player.get_node("Camera2D").global_position, 1)
+			yield(get_tree().create_timer(1), "timeout")
+			real_player.set_physics_process(true)
+			queue_free()
+			CloneData.can_clone = true
+		else:
+			get_tree().change_scene_to(lose_menu)
 
 	player_movement()
 	move_and_slide(velocity, Vector2.UP)
