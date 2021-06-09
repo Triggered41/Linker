@@ -8,7 +8,7 @@ export var GRAVITY = 50
 export var MAXFALLSPEED = 800
 export var SMOOTHING = 0.25
 
-
+var lose_menu = load("res://Scenes/GUI/lose_menu.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimatedSprite.playing = true
@@ -19,8 +19,10 @@ var velocity = Vector2.ZERO
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 
+	if is_dead():
+		get_tree().change_scene_to(lose_menu)
+
 	player_movement()
-	
 	move_and_slide(velocity, Vector2.UP)
 
 func player_movement():
@@ -34,3 +36,12 @@ func player_movement():
 	else:
 		velocity.y += GRAVITY
 	velocity.y = clamp(velocity.y, JUMP_FORCE, MAXFALLSPEED)
+
+func is_dead():
+	for i in get_slide_count():
+		if get_slide_collision(i).collider.name == "Spikes_tileMap":
+			return true
+		else: 
+			return false
+	
+	
