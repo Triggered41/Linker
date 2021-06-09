@@ -30,7 +30,7 @@ func player_movement():
 	if is_on_floor():
 		velocity.y = 0
 		if Input.is_action_pressed("ui_select"):
-			clone()
+			#clone()
 			velocity.y += JUMP_FORCE
 	else:
 		velocity.y += GRAVITY
