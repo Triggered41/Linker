@@ -35,6 +35,11 @@ func _physics_process(delta):
 	move_and_slide(velocity, Vector2.UP)
 
 func player_movement():
+	
+	if is_on_ceiling():
+		velocity.y = 0
+	
+	
 	var movex = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	velocity.x = lerp(velocity.x, movex*SPEED, SMOOTHING)
 	
