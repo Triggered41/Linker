@@ -5,8 +5,10 @@ extends KinematicBody2D
 export var SPEED = 500
 export var JUMP_FORCE = -1000
 export var GRAVITY = 50
-export var MAXFALLSPEED = 600
+export var MAXFALLSPEED = 800
 export var SMOOTHING = 0.25
+
+var is_clone = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,11 +30,19 @@ func player_movement():
 	if is_on_floor():
 		velocity.y = 0
 		if Input.is_action_pressed("ui_select"):
+			clone()
 			velocity.y += JUMP_FORCE
 	else:
 		velocity.y += GRAVITY
 		
 	velocity.y = clamp(velocity.y, JUMP_FORCE, MAXFALLSPEED)
+
+func clone():
+	var i = duplicate()
+	get_tree().root.add_child(i)
+	i.global_position = global_position
+	
+	
 	
 
 
