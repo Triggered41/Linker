@@ -58,7 +58,6 @@ shape = SubResource( 7 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 0.6, 0.6 )
 smoothing_enabled = true
 editor_draw_drag_margin = true
 script = ExtResource( 4 )

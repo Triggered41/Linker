@@ -19,18 +19,6 @@ var velocity = Vector2.ZERO
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 
-	if is_dead():
-		if name == "clone":
-			var real_player = get_tree().root.find_node("Player", true, false)
-			get_node("Camera2D").global_position = lerp(get_node("Camera2D").global_position, 
-															   real_player.get_node("Camera2D").global_position, 1)
-			yield(get_tree().create_timer(1), "timeout")
-			real_player.set_physics_process(true)
-			queue_free()
-			CloneData.can_clone = true
-		else:
-			get_tree().change_scene_to(lose_menu)
-
 	player_movement()
 	move_and_slide(velocity, Vector2.UP)
 
@@ -51,11 +39,22 @@ func player_movement():
 		velocity.y += GRAVITY
 	velocity.y = clamp(velocity.y, JUMP_FORCE, MAXFALLSPEED)
 
-func is_dead():
-	for i in get_slide_count():
-		if get_slide_collision(i).collider.name == "Spikes_tileMap":
-			return true
-		else: 
-			return false
+func kill():
+	if !CloneData.can_clone:
+		var real_player = get_tree().root.find_node("Player", true, false)
+		get_node("Camera2D").global_position = lerp(get_node("Camera2D").global_position, 
+														   real_player.get_node("Camera2D").global_position, 1)
+		yield(get_tree().create_timer(1), "timeout")
+		real_player.set_physics_process(true)
+		queue_free()
+		CloneData.can_clone = true
+	else:
+		var canvas = CanvasLayer.new()
+		var lose = lose_menu.instance()
+		get_tree().root.add_child(lose)
+		
+		
+		
+		
 	
 	
