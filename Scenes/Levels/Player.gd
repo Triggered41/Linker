@@ -1,13 +1,12 @@
 extends KinematicBody2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-const SPEED = 200
-const GRAVITY = 10
-const MAXFALLSPEED = 200
+# Keep them variables till we experiment with differen values
+export var SPEED = 500
+export var JUMP_FORCE = -1000
+export var GRAVITY = 50
+export var MAXFALLSPEED = 600
+export var SMOOTHING = 0.25
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,12 +17,24 @@ var velocity = Vector2.ZERO
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
-	velocity.y += GRAVITY
-	if Input.is_action_pressed("ui_left"):
-		velocity.x = -SPEED
-	elif Input.is_action_pressed("ui_right"):
-		velocity.x = SPEED
-	else:
-		velocity.x = 0
+	player_movement()
 	
-	move_and_slide(velocity)
+	move_and_slide(velocity, Vector2.UP)
+
+func player_movement():
+	var movex = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	velocity.x = lerp(velocity.x, movex*SPEED, SMOOTHING)
+	
+	if is_on_floor():
+		velocity.y = 0
+		if Input.is_action_pressed("ui_select"):
+			velocity.y += JUMP_FORCE
+	else:
+		velocity.y += GRAVITY
+		
+	velocity.y = clamp(velocity.y, JUMP_FORCE, MAXFALLSPEED)
+	
+
+
+
+
