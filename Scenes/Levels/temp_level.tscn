@@ -76,7 +76,7 @@ position = Vector2( 177.99, 1504.44 )
 [node name="Traps" type="Node2D" parent="."]
 
 [node name="Spikes_Series" parent="." instance=ExtResource( 6 )]
-position = Vector2( 99.8687, 1101.34 )
+position = Vector2( 160.413, 1087.89 )
 traps_number = 4
 
 [node name="Spikes_Series2" parent="." instance=ExtResource( 6 )]
