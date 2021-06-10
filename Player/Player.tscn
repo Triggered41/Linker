@@ -22,8 +22,8 @@ JUMP_FORCE = -1050
 GRAVITY = 45
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 2.51984, 5.03968 )
-scale = Vector2( 0.463367, 0.52003 )
+position = Vector2( 0.927022, 3.97299 )
+scale = Vector2( 0.54139, 0.55099 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
