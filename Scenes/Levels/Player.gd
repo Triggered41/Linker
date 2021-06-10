@@ -8,6 +8,8 @@ export var GRAVITY = 50
 export var MAXFALLSPEED = 800
 export var SMOOTHING = 0.25
 
+export var clone_time := 5.0
+
 var lose_menu = load("res://Scenes/GUI/lose_menu.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():

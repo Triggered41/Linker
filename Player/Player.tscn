@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Levels/Player.gd" type="Script" id=1]
 [ext_resource path="res://Texutres/enemy.png" type="Texture" id=2]
 [ext_resource path="res://Player/cloning_mech.gd" type="Script" id=3]
 [ext_resource path="res://Player/Camera2D.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/GUI/HUD.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 light_mode = 2
@@ -64,3 +65,10 @@ script = ExtResource( 4 )
 
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource( 3 )
+
+[node name="clone_tick" type="Timer" parent="Node2D"]
+one_shot = true
+
+[node name="HUD" parent="." instance=ExtResource( 5 )]
+
+[connection signal="timeout" from="Node2D/clone_tick" to="Node2D" method="_on_clone_tick_timeout"]
