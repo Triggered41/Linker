@@ -7,7 +7,10 @@
 [ext_resource path="res://Scenes/GUI/Assets/pressed_button.tres" type="StyleBox" id=5]
 [ext_resource path="res://Scenes/GUI/Assets/Normal_button.tres" type="StyleBox" id=6]
 
-[node name="lose_menu" type="Control"]
+[node name="CanvasLayer" type="CanvasLayer"]
+pause_mode = 2
+
+[node name="lose_menu" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 2.51984
@@ -18,7 +21,7 @@ __meta__ = {
 }
 main_menu = ExtResource( 2 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="lose_menu"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -32,7 +35,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="retry" type="Button" parent="VBoxContainer"]
+[node name="retry" type="Button" parent="lose_menu/VBoxContainer"]
 margin_right = 324.0
 margin_bottom = 158.0
 custom_styles/hover = ExtResource( 4 )
@@ -42,7 +45,7 @@ custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Retry"
 
-[node name="main_menu" type="Button" parent="VBoxContainer"]
+[node name="main_menu" type="Button" parent="lose_menu/VBoxContainer"]
 margin_top = 183.0
 margin_right = 324.0
 margin_bottom = 341.0
@@ -53,5 +56,5 @@ custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Lost"
 
-[connection signal="button_up" from="VBoxContainer/retry" to="." method="_on_retry_button_up"]
-[connection signal="button_up" from="VBoxContainer/main_menu" to="." method="_on_main_menu_button_up"]
+[connection signal="button_up" from="lose_menu/VBoxContainer/retry" to="lose_menu" method="_on_retry_button_up"]
+[connection signal="button_up" from="lose_menu/VBoxContainer/main_menu" to="lose_menu" method="_on_main_menu_button_up"]

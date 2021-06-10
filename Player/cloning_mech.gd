@@ -25,7 +25,7 @@ func _on_clone_tick_timeout():
 	var real_player = get_tree().root.find_node("Player", true, false)
 	player.get_node("Camera2D").global_position = lerp(player.get_node("Camera2D").global_position, 
 													   real_player.get_node("Camera2D").global_position, 1)
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(1, false), "timeout")
 	real_player.set_physics_process(true)
 	player.queue_free()
 	CloneData.can_clone = true

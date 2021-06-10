@@ -1,14 +1,10 @@
 extends CanvasLayer
 
-var player
 var timer:Timer
 
-func _ready():
-	set_physics_process(false)
-	player = get_tree().root.find_node("clone", true, false)
-	if player:
-		timer = player.get_node("Node2D/clone_tick")
-		set_physics_process(true)
-
 func _physics_process(delta):
-	$Control/ProgressBar.value = timer.time_left
+	if get_tree().root.has_node("clone"):
+		var player = get_tree().root.get_node("clone")
+		$Control/ProgressBar.value = player.get_node("Node2D/clone_tick").time_left
+	else:
+		$Control/ProgressBar.value = $Control/ProgressBar.max_value
