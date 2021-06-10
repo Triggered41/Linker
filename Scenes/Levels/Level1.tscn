@@ -33,7 +33,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 0/z_index = 0
 
-[sub_resource type="TileSet" id=3]
+[sub_resource type="TileSet" id=5]
 
 [node name="temp_level" type="Node2D"]
 
@@ -57,11 +57,12 @@ scale = Vector2( 6.61231, 6.61231 )
 texture = ExtResource( 3 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color( 0.0156863, 0.0156863, 0.0156863, 1 )
 
 [node name="TileMap2" type="TileMap" parent="."]
 position = Vector2( 5, 0 )
-tile_set = SubResource( 3 )
+tile_set = SubResource( 5 )
 format = 1
 
 [node name="Level_Bounds" parent="." instance=ExtResource( 5 )]
