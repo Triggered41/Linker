@@ -46,7 +46,8 @@ extents = Vector2( 2.6, 2.7 )
 pause_mode = 1
 material = SubResource( 1 )
 script = ExtResource( 1 )
-JUMP_FORCE = -1200
+JUMP_FORCE = -1050
+GRAVITY = 45
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 1.5 )
