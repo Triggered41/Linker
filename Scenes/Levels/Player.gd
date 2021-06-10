@@ -56,7 +56,6 @@ func kill():
 		CloneData.can_clone = true
 	else:
 		get_tree().paused = true
-		CloneData.clone_power = 3
 		var lose = lose_menu.instance()
 		get_tree().root.add_child(lose)
 
