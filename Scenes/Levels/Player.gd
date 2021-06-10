@@ -8,6 +8,8 @@ export var GRAVITY = 50
 export var MAXFALLSPEED = 800
 export var SMOOTHING = 0.25
 
+export var clone_time := 5.0
+
 var lose_menu = load("res://Scenes/GUI/lose_menu.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,6 +23,10 @@ func _physics_process(delta):
 
 	player_movement()
 	move_and_slide(velocity, Vector2.UP)
+
+	if Input.is_action_just_released("ui_cancel"):
+		pause()
+
 
 func player_movement():
 	
@@ -43,15 +49,23 @@ func kill():
 	if !CloneData.can_clone:
 		var real_player = get_tree().root.find_node("Player", true, false)
 		get_node("Camera2D").global_position = lerp(get_node("Camera2D").global_position, 
-														   real_player.get_node("Camera2D").global_position, 1)
-		yield(get_tree().create_timer(1), "timeout")
+														   real_player.get_node("Camera2D").global_position, 0.7)
+		yield(get_tree().create_timer(1, false), "timeout")
 		real_player.set_physics_process(true)
 		queue_free()
 		CloneData.can_clone = true
 	else:
-		print("DEAD!")
-#		var canvas = CanvasLayer.new()
-#		var lose = lose_menu.instance()
-#		get_tree().root.add_child(canvas)
-#		canvas.add_child(lose)
+		get_tree().paused = true
+		var lose = lose_menu.instance()
+		get_tree().root.add_child(lose)
 
+func pause():
+	
+	var pause_scene = load("res://Scenes/GUI/pause_menu.tscn")
+	get_tree().root.add_child(pause_scene.instance())
+	get_tree().paused = true
+	
+	
+	
+	
+	

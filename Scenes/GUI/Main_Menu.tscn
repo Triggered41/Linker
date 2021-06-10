@@ -6,7 +6,7 @@
 [ext_resource path="res://Scenes/GUI/Assets/hover_button.tres" type="StyleBox" id=4]
 [ext_resource path="res://Scenes/GUI/Assets/pressed_button.tres" type="StyleBox" id=5]
 [ext_resource path="res://Scenes/GUI/Assets/Normal_button.tres" type="StyleBox" id=6]
-[ext_resource path="res://Scenes/Levels/temp_level.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Levels/Level1.tscn" type="PackedScene" id=7]
 
 [node name="main_menu" type="Control"]
 anchor_right = 1.0
